@@ -16,7 +16,7 @@ header {
 }
 
 header, .widget {
-    background-color: #e5e5e5;
+    background-color: #fff;
 }
 
 header h1 {
@@ -30,6 +30,7 @@ main {
 }
 
 .widget {
+    border-radius: 2px;
     box-shadow: 0 5px 10px 5px rgba(0, 0, 0, .17);
     margin: 0 auto;
     margin-bottom: 2rem;
@@ -38,7 +39,6 @@ main {
 
 .widget h1 {
     margin: 0;
-    text-shadow: 1px 1px #fff;
 }
 
 .widget h1, .widget svg {

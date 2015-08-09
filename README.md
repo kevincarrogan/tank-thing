@@ -1,4 +1,4 @@
-# Tank Thing
+# Thinking Tank
 
 ## Ideas
 

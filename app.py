@@ -1,3 +1,5 @@
+import random
+import time
 import os
 import pystache
 import gevent
@@ -24,6 +26,17 @@ def index():
     }
 
     return pystache.render(templates['index'], ctx)
+
+
+@app.route('/current-temperature/')
+def current_temperature():
+    if request.headers.get('accept') == 'text/event-stream':
+        def temperatures():
+            while True:
+                yield 'event: current-temperature\n'
+                yield 'data: {}\n\n'.format(random.randint(0, 50))
+                time.sleep(2)
+        return Response(temperatures(), content_type='text/event-stream')
 
 
 if __name__ == '__main__':

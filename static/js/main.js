@@ -127,8 +127,6 @@ text.style('fill', function (d) {
     });
 
 var update = function () {
-    var newTemperature = Math.random() * (high - low) + low;
-    temperatureData[0] = Math.round(newTemperature);
     text.data(temperatureData)
         .text(function (d) {
             return d + '°';
@@ -156,6 +154,10 @@ var update = function () {
         });
 };
 
-setInterval(update, 2000);
+var src = new EventSource('/current-temperature/');
+src.addEventListener('current-temperature', function (evt) {
+    temperatureData[0] = parseInt(evt.data, 10);
+    update();
+});
 
 }());

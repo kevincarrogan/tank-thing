@@ -39,6 +39,10 @@ arc.innerRadius(70)
 
 var colours = ['#4ecdc4', '#c7f464', '#c44d58'];
 
+var coloursScale = d3.scale.quantize()
+    .domain([0, 10, 20, 30, 40, 50])
+    .range(['#4ecdc4', '#4ecdc4', '#c7f464', '#c44d58', '#c44d58']);
+
 var group = graph.append('g');
 
 group.selectAll('path')
@@ -102,7 +106,9 @@ textGroup.data(temperatureData);
 
 var text = textGroup.append('text');
 
-text.style('fill', '#fff')
+text.style('fill', function (d) {
+        return coloursScale(d);
+    })
     .text(function (d) {
         return d + '°';
     })
@@ -137,6 +143,10 @@ var update = function () {
             var y = Math.abs(bbox.y) + verticalMargin + 18;
 
             return 'translate(' + x + ',' + y + ')';
+        })
+        .transition()
+        .style('fill', function (d) {
+            return coloursScale(d);
         });
     circleGroup.data(temperatureData)
         .transition()

@@ -77,9 +77,11 @@ var rotateScale = d3.scale.linear()
         initialEndAngle * radToDegreeRatio
     ]);
 
+var temperatureData = [temperature];
+
 var circleGroup = graph.append('g');
 
-circleGroup.data([temperature]);
+circleGroup.data(temperatureData);
 
 circleGroup.attr('transform', function (d) {
     var rotation = rotateScale(d);
@@ -96,10 +98,11 @@ circleGroup.append('path')
 
 var textGroup = graph.append('g');
 
-textGroup.data([temperature]);
+textGroup.data(temperatureData);
 
-textGroup.append('text')
-    .style('fill', '#fff')
+var text = textGroup.append('text');
+
+text.style('fill', '#fff')
     .text(function (d) {
         return d + '°';
     })
@@ -116,5 +119,22 @@ textGroup.append('text')
 
         return 'translate(' + x + ',' + y + ')';
     });
+
+var update = function () {
+    var newTemperature = Math.random() * (high - low) + low;
+    temperatureData[0] = Math.round(newTemperature);
+    text.data(temperatureData)
+        .text(function (d) {
+            return d + '°';
+        });
+    circleGroup.data(temperatureData)
+        .transition()
+        .attr('transform', function (d) {
+            var rotation = rotateScale(d);
+            return transform + ' rotate(' + rotation + ')';
+        });
+};
+
+setInterval(update, 2000);
 
 }());

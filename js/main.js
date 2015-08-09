@@ -101,18 +101,18 @@ textGroup.data([temperature]);
 textGroup.append('text')
     .style('fill', '#fff')
     .text(function (d) {
-        return d;
+        return d + '°';
     })
-    .attr('font-size', 60)
+    .attr('font-size', 50)
     .attr('font-weight', 600)
     .attr('transform', function () {
         var bbox = this.getBBox();
         var width = bbox.width;
         var horizontalMargin = (graphWidth - width) / 2;
-        var x = Math.abs(bbox.x) + horizontalMargin;
+        var x = Math.abs(bbox.x) + horizontalMargin + 8;
         var height = bbox.height;
         var verticalMargin = (graphHeight - height) / 2;
-        var y = Math.abs(bbox.y) + verticalMargin + 16;
+        var y = Math.abs(bbox.y) + verticalMargin + 18;
 
         return 'translate(' + x + ',' + y + ')';
     });

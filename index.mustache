@@ -1,0 +1,32 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Thinking Tank</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/static/css/normalize.css">
+        <link rel="stylesheet" href="/static/css/h5bp.css">
+        <link rel="stylesheet" href="/static/css/main.css">
+        <script src="/static/js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+
+        <header>
+            <h1>Thinking Tank</h1>
+        </header>
+
+        <main>
+            <section id="current-temperature" class="widget current-temperature" data-temperature="{{ temperature }}" data-low="0" data-high="50" data-optimal-low="20" data-optimal-high="30">
+                <h1>Current Temperature</h1>
+            </section>
+        </main>
+
+        <script src="/static/js/vendor/jquery-1.11.3.min.js"></script>
+        <script src="/static/js/vendor/d3.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>

@@ -126,6 +126,17 @@ var update = function () {
     text.data(temperatureData)
         .text(function (d) {
             return d + '°';
+        })
+        .attr('transform', function () {
+            var bbox = this.getBBox();
+            var width = bbox.width;
+            var horizontalMargin = (graphWidth - width) / 2;
+            var x = Math.abs(bbox.x) + horizontalMargin + 8;
+            var height = bbox.height;
+            var verticalMargin = (graphHeight - height) / 2;
+            var y = Math.abs(bbox.y) + verticalMargin + 18;
+
+            return 'translate(' + x + ',' + y + ')';
         });
     circleGroup.data(temperatureData)
         .transition()

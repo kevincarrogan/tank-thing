@@ -15,3 +15,4 @@
  - Redis
  - RPi GPIO
  - D3.js
+ - Supervisord

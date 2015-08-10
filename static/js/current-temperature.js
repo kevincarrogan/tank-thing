@@ -37,11 +37,11 @@ arc.innerRadius(70)
         return scale(d[1]);
     });
 
-var colours = ['#4ecdc4', '#c7f464', '#c44d58'];
+var colours = ['#4ecdc4', '#c7f464', '#ff6b6b'];
 
 var coloursScale = d3.scale.quantize()
     .domain([0, 10, 20, 30, 40, 50])
-    .range(['#4ecdc4', '#4ecdc4', '#c7f464', '#c44d58', '#c44d58']);
+    .range(['#4ecdc4', '#4ecdc4', '#c7f464', '#ff6b6b', '#ff6b6b']);
 
 var group = graph.append('g');
 

@@ -92,12 +92,16 @@ circleGroup.attr('transform', function (d) {
     return transform + ' rotate(' + rotation + ')';
 });
 
-circleGroup.append('circle')
-    .style('fill', '#555')
+var circle = circleGroup.append('circle')
+    .style('fill', function (d) {
+        return coloursScale(d);
+    })
     .attr('r', 60);
 
-circleGroup.append('path')
-    .style('fill', '#555')
+var triangle = circleGroup.append('path')
+    .style('fill', function (d) {
+        return coloursScale(d);
+    })
     .attr('d', 'M 0 -68 l 10 10 l -20 0 z');
 
 var textGroup = graph.append('g');
@@ -106,9 +110,7 @@ textGroup.data(temperatureData);
 
 var text = textGroup.append('text');
 
-text.style('fill', function (d) {
-        return coloursScale(d);
-    })
+text.style('fill', '#555')
     .text(function (d) {
         return d + '°';
     })
@@ -141,7 +143,13 @@ var update = function () {
             var y = Math.abs(bbox.y) + verticalMargin + 18;
 
             return 'translate(' + x + ',' + y + ')';
-        })
+        });
+    circle.data(temperatureData)
+        .transition()
+        .style('fill', function (d) {
+            return coloursScale(d);
+        });
+    triangle.data(temperatureData)
         .transition()
         .style('fill', function (d) {
             return coloursScale(d);

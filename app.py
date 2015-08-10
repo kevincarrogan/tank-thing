@@ -1,4 +1,5 @@
 import random
+import redis
 import time
 import os
 import pystache
@@ -31,11 +32,15 @@ def index():
 @app.route('/current-temperature/')
 def current_temperature():
     if request.headers.get('accept') == 'text/event-stream':
+        r = redis.Redis()
+        pubsub = r.pubsub()
+        pubsub.subscribe(['temperature'])
+
         def temperatures():
-            while True:
-                yield 'event: current-temperature\n'
-                yield 'data: {}\n\n'.format(random.randint(0, 50))
-                time.sleep(2)
+            for msg in pubsub.listen():
+                if msg['type'] == 'message':
+                    yield 'event: current-temperature\n'
+                    yield 'data: {}\n\n'.format(msg['data'])
         return Response(temperatures(), content_type='text/event-stream')
 
 

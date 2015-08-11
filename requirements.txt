@@ -2,3 +2,4 @@ pystache
 gevent
 flask
 redis
+supervisor

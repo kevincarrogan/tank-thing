@@ -5,5 +5,7 @@ import time
 r = redis.Redis()
 
 while True:
-    r.publish('temperature', random.randint(0, 50))
+    temperature = random.randint(0, 50)
+    r.publish('temperature', temperature)
+    r.set('temperature', temperature)
     time.sleep(2)

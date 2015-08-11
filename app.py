@@ -22,8 +22,9 @@ templates = {
 
 @app.route('/')
 def index():
+    r = redis.Redis()
     ctx = {
-        'temperature': 25,
+        'temperature': r.get('temperature'),
     }
 
     return pystache.render(templates['index'], ctx)

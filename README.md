@@ -7,6 +7,7 @@
  - Raspberry pi
  - Waterproof temperature sensor
  - LED screen
+ - Energenie
 
 ### Software
 

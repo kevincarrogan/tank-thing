@@ -6,6 +6,8 @@ from RPi import GPIO
 
 r = redis.Redis()
 
+GPIO.setmode(GPIO.BCM)
+
 a_pin = 18
 b_pin = 23
 

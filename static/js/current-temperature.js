@@ -81,11 +81,9 @@ var rotateScale = d3.scale.linear()
         initialEndAngle * radToDegreeRatio
     ]);
 
-var temperatureData = [temperature];
-
 var circleGroup = graph.append('g');
 
-circleGroup.data(temperatureData);
+circleGroup.datum(temperature);
 
 circleGroup.attr('transform', function (d) {
     var rotation = rotateScale(d);
@@ -106,7 +104,7 @@ var triangle = circleGroup.append('path')
 
 var textGroup = graph.append('g');
 
-textGroup.data(temperatureData);
+textGroup.datum(temperature);
 
 var text = textGroup.append('text');
 
@@ -129,7 +127,7 @@ text.style('fill', '#555')
     });
 
 var update = function () {
-    text.data(temperatureData)
+    text.datum(temperature)
         .text(function (d) {
             return d + '°';
         })
@@ -144,17 +142,17 @@ var update = function () {
 
             return 'translate(' + x + ',' + y + ')';
         });
-    circle.data(temperatureData)
+    circle.datum(temperature)
         .transition()
         .style('fill', function (d) {
             return coloursScale(d);
         });
-    triangle.data(temperatureData)
+    triangle.datum(temperature)
         .transition()
         .style('fill', function (d) {
             return coloursScale(d);
         });
-    circleGroup.data(temperatureData)
+    circleGroup.datum(temperature)
         .transition()
         .attr('transform', function (d) {
             var rotation = rotateScale(d);
@@ -164,7 +162,7 @@ var update = function () {
 
 var src = new EventSource('/current-temperature/');
 src.addEventListener('current-temperature', function (evt) {
-    temperatureData[0] = parseInt(evt.data, 10);
+    temperature = parseInt(evt.data, 10);
     update();
 });
 

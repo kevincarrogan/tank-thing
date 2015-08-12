@@ -91,15 +91,11 @@ circleGroup.attr('transform', function (d) {
 });
 
 var circle = circleGroup.append('circle')
-    .style('fill', function (d) {
-        return coloursScale(d);
-    })
+    .style('fill', coloursScale)
     .attr('r', 60);
 
 var triangle = circleGroup.append('path')
-    .style('fill', function (d) {
-        return coloursScale(d);
-    })
+    .style('fill', coloursScale)
     .attr('d', 'M 0 -68 l 10 10 l -20 0 z');
 
 var textGroup = graph.append('g');
@@ -144,14 +140,10 @@ var update = function () {
         });
     circle.datum(temperature)
         .transition()
-        .style('fill', function (d) {
-            return coloursScale(d);
-        });
+        .style('fill', coloursScale);
     triangle.datum(temperature)
         .transition()
-        .style('fill', function (d) {
-            return coloursScale(d);
-        });
+        .style('fill', coloursScale);
     circleGroup.datum(temperature)
         .transition()
         .attr('transform', function (d) {

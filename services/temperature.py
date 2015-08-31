@@ -2,14 +2,14 @@ import random
 import redis
 import time
 
+from w1thermsensor import W1ThermSensor
+
 r = redis.Redis()
 
-temperature = random.randint(0, 50)
+sensor = W1ThermSensor()
 
 while True:
-    temperature = random.randint(temperature - 2, temperature + 2)
-    temperature = max(0, temperature)
-    temperature = min(50, temperature)
+    temperature = sensor.get_temperature()
     r.publish('temperature', temperature)
     r.set('temperature', temperature)
     time.sleep(0.17)

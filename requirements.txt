@@ -3,3 +3,4 @@ gevent
 flask
 redis
 supervisor
+w1thermsensor

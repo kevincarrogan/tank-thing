@@ -1,3 +1,4 @@
 *.log
 *.pid
 dump.rdb
+.DS_Store
